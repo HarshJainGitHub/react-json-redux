@@ -11,6 +11,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { deleteUser, loadUsers } from '../redux/action';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { useNavigate } from 'react-router-dom'
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -67,10 +68,15 @@ const Home = () => {
     const btnStyles = useButtonStyles();
     let dispatch = useDispatch();
     const {users} = useSelector(state => state.userData);
+    let navigate = useNavigate();
 
     useEffect(() => {
         dispatch(loadUsers());
     },[])
+
+    const changeRoute = () => {
+        navigate("/addUser");
+    };
 
     const handleDelete = (id) => {
         if(window.confirm("Are you sure you wanted to delete User ? ")){
@@ -78,7 +84,11 @@ const Home = () => {
         }
     }
   return (
+      
     <div>
+        <div className={btnStyles.root}>
+            <Button variant='contained' color="primary" style={{ marginRight: '5px' }} onClick={() => changeRoute()}>ADD USER</Button>
+        </div>
           <TableContainer component={Paper}>
               <Table className={classes.table} sx={{ minWidth: 700 }} aria-label="customized table">
                   <TableHead>
@@ -102,7 +112,6 @@ const Home = () => {
                               <StyledTableCell align="center">
                                 <div className={btnStyles.root}>
                                     <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-                                        <Button style={{marginRight:'5px'}}>Add</Button>
                                         <Button style={{ marginRight: '5px' }} color="secondary" onClick={ () => handleDelete(user.id) }>Delete</Button>
                                         <Button color="primary">Edit</Button>
                                     </ButtonGroup>
