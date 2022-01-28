@@ -8,7 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useDispatch , useSelector } from 'react-redux';
-import { loadUsers } from '../redux/action';
+import { deleteUser, loadUsers } from '../redux/action';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -20,6 +22,17 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: 14,
     },
 }))(TableCell);
+
+const useButtonStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+}));
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
@@ -49,15 +62,21 @@ const useStyles = makeStyles({
 });
 
 
-function Home() {
-  const classes = useStyles();
-    
+const Home = () => {
+    const classes = useStyles();
+    const btnStyles = useButtonStyles();
     let dispatch = useDispatch();
     const {users} = useSelector(state => state.userData);
 
     useEffect(() => {
         dispatch(loadUsers());
     },[])
+
+    const handleDelete = (id) => {
+        if(window.confirm("Are you sure you wanted to delete User ? ")){
+            dispatch(deleteUser(id));
+        }
+    }
   return (
     <div>
           <TableContainer component={Paper}>
@@ -80,7 +99,15 @@ function Home() {
                               <StyledTableCell align="center">{user.email}</StyledTableCell>
                               <StyledTableCell align="center">{user.contact}</StyledTableCell>
                               <StyledTableCell align="center">{user.address}</StyledTableCell>
-                              <StyledTableCell align="center"></StyledTableCell>
+                              <StyledTableCell align="center">
+                                <div className={btnStyles.root}>
+                                    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+                                        <Button style={{marginRight:'5px'}}>Add</Button>
+                                        <Button style={{ marginRight: '5px' }} color="secondary" onClick={ () => handleDelete(user.id) }>Delete</Button>
+                                        <Button color="primary">Edit</Button>
+                                    </ButtonGroup>
+                                </div>
+                              </StyledTableCell>
                           </StyledTableRow>
                       ))}
                   </TableBody>

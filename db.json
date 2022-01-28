@@ -1,25 +1,18 @@
 {
-    "user": [
-        {
-            "name":"Adam",
-            "address":"London",
-            "email":"adam@gmail.com",
-            "contact": "8967543108",
-            "id":1
-        },
-        {
-            "name":"Emma",
-            "address":"Birmingham",
-            "email":"emma.watson@gmail.com",
-            "contact": "42896754308",
-            "id":2
-        },
-        {
-            "name":"Steven",
-            "address":"Seattle",
-            "email":"steve.harvey@gmail.com",
-            "contact": "6712389678",
-            "id":3
-        }
-    ]
+  "user": [
+    {
+      "name": "Adam",
+      "address": "London",
+      "email": "adam@gmail.com",
+      "contact": "8967543108",
+      "id": 1
+    },
+    {
+      "name": "Emma",
+      "address": "Birmingham",
+      "email": "emma.watson@gmail.com",
+      "contact": "42896754308",
+      "id": 2
+    }
+  ]
 }
