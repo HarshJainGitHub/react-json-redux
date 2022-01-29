@@ -22,7 +22,12 @@ const userReducer = (state =initalState , action) => {
                 loading: false,
             }
         break;
-        
+        case types.ADD_USER: 
+            return {
+                ...state,
+                loading: false,
+            }
+        break;
         default: return state
     }
 }
