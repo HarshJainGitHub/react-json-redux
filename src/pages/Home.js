@@ -113,7 +113,7 @@ const Home = () => {
                                 <div className={btnStyles.root}>
                                     <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
                                         <Button style={{ marginRight: '5px' }} color="secondary" onClick={ () => handleDelete(user.id) }>Delete</Button>
-                                        <Button color="primary">Edit</Button>
+                                        <Button color="primary" onClick={ () => navigate(`/editUser/${user.id}`)}>Edit</Button>
                                     </ButtonGroup>
                                 </div>
                               </StyledTableCell>
