@@ -11,8 +11,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { deleteUser, loadUsers } from '../redux/action';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
